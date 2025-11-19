@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Shweta</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9ecb, #ffb8e3, #ffd6ef);
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            width: 90%;
+            max-width: 420px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            margin: 0 0 15px;
+            font-size: 22px;
+            color: #fff;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #fff;
+            color: #e6007e;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #ffe1f3;
+        }
+
+        #error {
+            color: rgb(255, 230, 230);
+            font-size: 14px;
+            height: 20px;
+        }
+
+        #success {
+            color: #ffffff;
+            font-size: 16px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        #next {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            color: #d9006c;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        @keyframes heartFall {
+            0% { transform: translateY(-50px); opacity: 1; }
+            100% { transform: translateY(600px); opacity: 0; }
+        }
+
+        .heart {
+            position: fixed;
+            top: -20px;
+            color: pink;
+            font-size: 24px;
+            animation: heartFall 2.5s linear forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Type the name of the most beautiful girl to unlock the surprise ✨</h2>
+
+        <input type="text" id="nameInput" placeholder="Type here...">
+        <div id="error"></div>
+
+        <button class="btn" onclick="checkName()">Submit</button>
+
+        <div id="success">Yes! It’s Shweta ❤️<br>Shweta, this surprise is for you ❤️</div>
+    </div>
+
+    <a id="next" href="page2-baby.html">Next →</a>
+
+<script>
+function checkName() {
+    let value = document.getElementById("nameInput").value.trim().toLowerCase();
+    let error = document.getElementById("error");
+    let success = document.getElementById("success");
+    let next = document.getElementById("next");
+
+    if (value === "shweta") {
+        error.innerHTML = "";
+        success.style.display = "block";
+        next.style.display = "block";
+        throwHearts();
+    } else {
+        success.style.display = "none";
+        error.innerHTML = "Uh-oh… that’s not her name 💗";
+    }
+}
+
+function throwHearts() {
+    for (let i = 0; i < 18; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDelay = (Math.random()*1)+"s";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>heart.remove(), 3000);
+    }
+}
+</script>
+
+</body>
+</html>
